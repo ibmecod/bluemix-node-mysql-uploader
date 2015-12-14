@@ -1,4 +1,9 @@
 ---
+declared-services:
+  mysql-node-upload: #A declared service is needed for one click deployment. See https://www.ng.bluemix.net/docs/manageapps/deployingapps.html#deploy_button
+    label: mysql  #As of Dec 11, 2015 this was the marketplace label
+    plan: 100  #As of Dec 11, 2015 this was the marketplace plan
+    
 applications: #Reference http://docs.cloudfoundry.com/docs/using/deploying-apps/manifest.html
 - name: NodeMySQLUpload #Application Name. Unique to the user's Space
   memory: 256M #The maximum memory to allocate to each application instance
@@ -9,8 +14,8 @@ applications: #Reference http://docs.cloudfoundry.com/docs/using/deploying-apps/
   path: . #Path to the application to be pushed
   command: node app.js #The command to use to start the application
   services:
-    mysql-node-upload: #Identifier for CompaniesTextAnalyticsService Bound Service instance
+  - mysql-node-upload: #Identifier for CompaniesTextAnalyticsService Bound Service instance
       label: mysql
       provider: core
-      version: '5.5'
-      plan: '100'
+      version: 5.5
+      plan: 100
